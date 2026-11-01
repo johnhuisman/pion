@@ -1,5 +1,6 @@
 """Pion: stateless chess API; replay the entire move history on every request."""
 import chess
+from openings import library
 from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
@@ -55,6 +56,11 @@ def state(board, history, claim=None):
 @app.get('/')
 def index():
     return render_template('index.html')
+
+
+@app.get('/api/openings')
+def api_openings():
+    return jsonify(library())
 
 
 @app.get('/health')

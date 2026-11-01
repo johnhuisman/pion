@@ -59,3 +59,24 @@ class Rules(unittest.TestCase):
         self.assertEqual(c.post('/api/position',json={'moves':[],'claim':'fifty'}).status_code,400)
 
 if __name__=='__main__': unittest.main()
+
+class OpeningLibrary(unittest.TestCase):
+    def test_all_variations(self):
+        from openings import library
+        groups=library()
+        self.assertEqual(len(groups),20)
+        self.assertEqual(sum(len(g['variants']) for g in groups),40)
+        ids=set()
+        for g in groups:
+            self.assertTrue(g['intro'])
+            for v in g['variants']:
+                self.assertNotIn(v['id'],ids);ids.add(v['id'])
+                b,h=position(v['moves'])
+                self.assertEqual(h,v['san'])
+                self.assertEqual(len(v['notes']),len(v['moves']))
+                self.assertGreaterEqual(len(v['moves']),9)
+                self.assertTrue(all(v['notes']))
+    def test_openings_endpoint(self):
+        r=app.test_client().get('/api/openings')
+        self.assertEqual(r.status_code,200)
+        self.assertEqual(len(r.json),20)

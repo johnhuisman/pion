@@ -15,3 +15,8 @@ Python web service, build `pip install -r requirements.txt`, start `gunicorn app
 
 ## Tests
 `python -m unittest discover -s tests -v`
+
+## Openingstrainer
+Twintig klassieke openingsfamilies, elk met twee inleidende varianten. Kies een opening, variant en kleur en druk op Start. Pion speelt de andere kleur; afwijkende legale zetten worden als afwijkingen van de gekozen oefenlijn uitgelegd. Hint onthult de zet. De eindstelling sluit de les af. De Nederlandse uitleg bestaat uit een strategisch variantplan plus een concrete beschrijving van iedere zet; dit is vaste lesinhoud, geen computeranalyse of evaluatie.
+
+Bordstijlen: klassiek hout, groen en blauwgrijs. De keuze wordt op het apparaat bewaard. SVG-stukken worden geleverd door python-chess. Openingsnamen en korte lijnen zijn schaakfeiten; de naamgevingsreferentie is https://github.com/lichess-org/chess-openings (CC0). De commentaren zijn voor Pion geschreven.
